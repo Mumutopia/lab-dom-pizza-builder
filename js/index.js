@@ -101,19 +101,36 @@ function renderButtons() {
 
 function renderPrice() {
   // Iteration 4: change the HTML of `<aside class="panel price">`
-
-  const displayPrice = document.getElementById('#totalPrice')
-  console.log("The price is =>");
-  console.log(typeof displayPrice); 
+  let uList = document.getElementById('ingredientsList');
+  let liList = document.createElement("li");
+  
+  
+  let displayPrice = document.getElementById('totalPrice')
   
   let totalPrice = 10;
-  if (state.pepperoni) { totalPrice += ingredients.pepperoni.price; };
-  if (state.mushrooms) { totalPrice += ingredients.mushrooms.price; };
-  if (state.greenPeppers) { totalPrice += ingredients.greenPeppers.price; };
-  if (state.whiteSauce) { totalPrice += ingredients.whiteSauce.price; };
-  if (state.glutenFreeCrust) { totalPrice += ingredients.glutenFreeCrust.price; };
+  if (state.pepperoni) { totalPrice += ingredients.pepperoni.price;
+    uList.appendChild(liList);
+    liList.appendChild(document.createTextNode(ingredients.pepperoni.price + "$ " +ingredients.pepperoni.name))
+    liList.setAttribute("id", "pepperoni-list");} else if (!state.pepperoni) { };
+  if (state.mushrooms) { totalPrice += ingredients.mushrooms.price;
+    uList.appendChild(liList);
+    liList.appendChild(document.createTextNode(ingredients.mushrooms.price + "$ " +ingredients.mushrooms.name))
+    liList.setAttribute("id", "mushrooms-list");} else if (!state.mushrooms) { };
+  if (state.greenPeppers) { totalPrice += ingredients.greenPeppers.price;
+    uList.appendChild(liList);
+    liList.appendChild(document.createTextNode(ingredients.greenPeppers.price + "$ " +ingredients.greenPeppers.name))
+    liList.setAttribute("id", "green-peppers-list");} else if (!state.greenPeppers) { };
+  if (state.whiteSauce) { totalPrice += ingredients.whiteSauce.price;
+    uList.appendChild(liList);
+    liList.appendChild(document.createTextNode(ingredients.whiteSauce.price + "$ " +ingredients.whiteSauce.name))
+    liList.setAttribute("id", "white-sauce-list");} else if (!state.whiteSauce) { };
+  if (state.glutenFreeCrust) { totalPrice += ingredients.glutenFreeCrust.price;
+    uList.appendChild(liList);
+    liList.appendChild(document.createTextNode(ingredients.glutenFreeCrust.price + "$ " +ingredients.glutenFreeCrust.name))
+    liList.setAttribute("id", "pepperoni-list");} else if (!state.glutenFreeCrust) { };
 
-  console.log(displayPrice);
+  displayPrice.innerHTML=totalPrice + "$";
+  
   return totalPrice;
 
 }
